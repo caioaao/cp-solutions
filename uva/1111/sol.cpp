@@ -46,16 +46,16 @@ inline bool ccw(point o, point a, point b){
 vector<point>chPts;
 void convexHull(){
 	sort(pts.begin(),pts.end());
-	
+
 	up.assign(n,point());
 	dn.assign(n,point());
-	
+
 	int i = 0, j = 0;
-	
+
 	for(int k = 0; k < n; k++){
 		while(i > 1 && ccw(up[i-2],up[i-1],pts[k])) i--;
 		while(j > 1 && !ccw(dn[j-2],dn[j-1],pts[k])) j--;
-		
+
 		up[i++] = pts[k];
 		dn[j++] = pts[k];
 	}
@@ -65,17 +65,17 @@ void convexHull(){
 	for(int i = (int)dn.size() -  2; i >= 0; i--) chPts.push_back(dn[i]);
 }
 
-double rotatingCalipers(){
+double rotatingCalipers() {
 // comparacao dos pares antipodais sempre testa quando encontra uma
 // aresta em que os 2 pontos são antipodais com o terceiro ponto
 // (ideia básica do minimum enclosing rectangles
 	double best = 1e8;
-	
+
 	int i = 0, j = dn.size() - 1;
-	
-	while(i < (int) up.size() - 1 || j > 0){
-		if(i == (int) up.size() - 1){
-			j--; 
+
+	while(i < (int) up.size() - 1 || j > 0) {
+		if(i == (int) up.size() - 1) {
+			j--;
 			best = min(best, distToLine(up[i],dn[j],dn[j+1]));
 		}
 		else if(j == 0){
@@ -93,9 +93,10 @@ double rotatingCalipers(){
 			}
 		}
 	}
-	
+
 	return best;
 }
+
 
 int main(){
 	ios_base::sync_with_stdio(false);
@@ -104,19 +105,19 @@ int main(){
 	while(cin >> n){
 		if(!first) cout  << '\n';
 		first = false;
-		
+
 		if(n == 0) break;
-		
+
 		cout << "Case " << caso++ << ": ";
-		
+
 		pts.assign(n,point());
-		
+
 		for(int i = 0; i < n; i++){
 			cin >> pts[i].first >> pts[i].second;
 		}
-		
+
 		convexHull();
-			
+
 		cout << fixed << setprecision(2) << rotatingCalipers();
 	}
 }
