@@ -25,9 +25,9 @@ typedef vector<VL> VVL;
 typedef vector<PL> VPL;
 typedef vector<VPL>VVPL;
 
-L ans ();
-void forward_elimination();
-void back_substitution();
+inline L ans ();
+inline void forward_elimination();
+inline void back_substitution();
 
 #ifdef _USE_LOG
 void log_mat();
@@ -57,8 +57,9 @@ int main() {
 }
 
 
-void forward_elimination() {
-    for(int i = 0; i < min(MAXB, n); ++i) {
+inline void forward_elimination() {
+    int i;
+    for(i = 0; i < min(MAXB, n); ++i) {
         for(int j = i + 1; j < n; ++j) {
             if(mat[i] < mat[j]) swap(mat[i], mat[j]);
         }
@@ -68,10 +69,11 @@ void forward_elimination() {
             mat[j] = min(mat[j], mat[i] ^ mat[j]);
         }
     }
+    n = i + 1;
 }
 
 
-void back_substitution() {
+inline void back_substitution() {
     for(int i = n - 1; i >= 0; --i) {
         if(!mat[i]) continue;
         for(int j = 0; j < i; ++j) {
@@ -80,10 +82,10 @@ void back_substitution() {
     }
 }
 
-L ans () {
-    L ans = 0;
-    for(int i = 0; i < n; ++i) ans ^= mat[i];
-    return ans;
+inline L ans () {
+    L ret = 0;
+    for(int i = 0; i < n; ++i) ret ^= mat[i];
+    return ret;
 }
 
 #ifdef _USE_LOG
