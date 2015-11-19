@@ -1,0 +1,15 @@
+# ignoring all...
+*
+
+# ...but source codes...
+!*.cpp
+!*.c
+!*.java
+!*.py
+!*.hs
+
+# ...or gitignore...
+!.gitignore
+
+# ...even if they're in subdirectories
+!*/
