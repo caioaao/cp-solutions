@@ -17,7 +17,7 @@ mainLoop = do
   inEnded <- isEOF
   if inEnded
     then return ()
-    else do numL <- getLine
+    else do getLine
             str <- getLine
             print $ slv str
             mainLoop
