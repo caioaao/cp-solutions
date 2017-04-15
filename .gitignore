@@ -3,6 +3,7 @@
 
 # ...but source codes...
 !*.cpp
+!*.lisp
 !*.c
 !*.java
 !*.py
