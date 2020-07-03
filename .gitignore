@@ -8,6 +8,10 @@
 !*.java
 !*.py
 !*.hs
+!*.ml
+
+# ...or local emacs config...
+!*.dir-locals.el
 
 # ...or gitignore...
 !.gitignore
