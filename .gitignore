@@ -9,6 +9,7 @@
 !*.py
 !*.hs
 !*.ml
+!*.sh
 
 # ...or local emacs config...
 !*.dir-locals.el
